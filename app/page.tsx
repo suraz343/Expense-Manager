@@ -55,7 +55,13 @@ export default function ExpenseManager() {
   });
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    addExpense(values);
+    // Convert the date to a string
+    const expenseData = {
+      ...values,
+      date: values.date.toISOString(), // Convert Date to ISO string
+    };
+  
+    addExpense(expenseData); // Pass the transformed data
     form.reset();
   };
 
